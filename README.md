@@ -1,2 +1,103 @@
-# Game-on
-New game
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>For My Baby ❤️</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            text-align: center;
+            background-color: #ffe6e6; /* Soft pink for romantic vibes */
+            color: #d63384; /* Cute and loving color */
+            overflow: hidden;
+        }
+        .container {
+            margin-top: 10%;
+            padding: 20px;
+            background: white;
+            display: inline-block;
+            border-radius: 20px;
+            box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.1);
+            opacity: 0;
+            animation: fadeIn 1.5s forwards;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(-20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .btn {
+            background-color: #ff66b2;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            font-size: 18px;
+            border-radius: 20px;
+            margin: 10px;
+            cursor: pointer;
+            transition: transform 0.2s ease-in-out;
+        }
+        .btn:hover {
+            transform: scale(1.1);
+        }
+        .hidden {
+            display: none;
+        }
+        .hearts {
+            position: absolute;
+            font-size: 30px;
+            opacity: 0;
+            animation: floatUp 2s linear infinite;
+        }
+        @keyframes floatUp {
+            0% { transform: translateY(0); opacity: 1; }
+            100% { transform: translateY(-100px); opacity: 0; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h1>Hey Baby ❤️</h1>
+        <p>I made this just for you! Wanna play a little game?</p>
+        <button class="btn" onclick="startGame()">Start</button>
+        <div id="game" class="hidden">
+            <p id="flirtyText"></p>
+            <button class="btn" onclick="showNewText()">More!</button>
+            <button class="btn" onclick="sendLove()">Like it! ❤️</button>
+        </div>
+    </div>
+
+    <script>
+        const messages = [
+            "You're my favorite person in the whole world ❤️",
+            "I could stare at you forever and never get tired 😘",
+            "Being with you feels like a dream I never want to wake up from ✨",
+            "You make my heart race faster than a rollercoaster 🎢💓",
+            "If love had a face, it would look exactly like you 😍"
+        ];
+
+        function startGame() {
+            document.querySelector("button").style.display = "none";
+            document.getElementById("game").classList.remove("hidden");
+            showNewText();
+        }
+
+        function showNewText() {
+            const randomIndex = Math.floor(Math.random() * messages.length);
+            document.getElementById("flirtyText").innerText = messages[randomIndex];
+        }
+
+        function sendLove() {
+            let heart = document.createElement("div");
+            heart.innerHTML = "❤️";
+            heart.classList.add("hearts");
+            heart.style.left = Math.random() * window.innerWidth + "px";
+            heart.style.top = window.innerHeight + "px";
+            document.body.appendChild(heart);
+            setTimeout(() => heart.remove(), 2000);
+        }
+    </script>
+
+</body>
+</html>
